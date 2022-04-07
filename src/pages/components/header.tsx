@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import styles from '../../styles/Home.module.css';
 
@@ -13,8 +14,8 @@ const Header = () => {
     
 	return (
         <header className={styles.header}>
-            <a href="/">Heim</a>
-            <a href={loggedIn ? '/logout' : '/login'}>{loggedIn ? 'Skrá út' : 'Skrá inn'}</a>
+            <Link href="/"><a>Heim</a></Link>
+            <Link href={loggedIn ? '/logout' : '/login'}><a>{loggedIn ? 'Skrá út' : 'Skrá inn'}</a></Link>
         </header>
     );
 };

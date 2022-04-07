@@ -23,7 +23,7 @@ const singlePage = (props: { event: IEventSingle }) => {
 				<h2>Skráningar:</h2>
 				<ul className={styles.commentContainer}>
 					{props.event.registrations.map((reg: IComment) => (
-						<li className={styles.comment}>
+						<li key={styles.id} className={styles.comment}>
 							<p>
 								{reg.name}{' '}
 								<span>@{reg.username}</span>

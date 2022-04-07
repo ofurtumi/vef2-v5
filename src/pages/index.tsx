@@ -15,7 +15,7 @@ const Home = (props: { events: IEventArray }) => {
 				/>
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-      <Header />
+			<Header />
 			<main className={styles.main}>
 				<h1 className={styles.title}>
 					Viðburðir frá{' '}
@@ -25,20 +25,24 @@ const Home = (props: { events: IEventArray }) => {
 				</h1>
 
 				<p className={styles.description}>
-					Verkefni 5 í 
+					Verkefni 5 í
 					<code className={styles.code}>HBV201G - Vefforritun 2</code>
 				</p>
 
-        <div className={styles.grid}>
+				<div className={styles.grid}>
 					{props.events.items.map((event) => (
-            <a href={"./events/" + event.id} className={styles.card}>
-              <h2>{event.name}</h2>
-              <p>{event.description}</p>
-            </a>
-          ))}
-        </div>
+						<a
+							key={event.id}
+							href={'./events/' + event.id}
+							className={styles.card}
+						>
+							<h2>{event.name}</h2>
+							<p>{event.description}</p>
+						</a>
+					))}
+				</div>
 			</main>
-      <Footer />
+			<Footer />
 		</div>
 	);
 };
