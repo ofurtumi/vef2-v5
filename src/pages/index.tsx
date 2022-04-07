@@ -1,22 +1,21 @@
-import type { NextPage } from 'next';
 import Head from 'next/head';
-import Image from 'next/image';
 import styles from '../styles/Home.module.css';
 import { IEventArray, IEventOverview } from '../types';
+import Footer from './components/footer';
+import Header from './components/header';
 
 const Home = (props: { events: IEventArray }) => {
-	// console.log('events --> ', props.events.items[0]);
 	return (
 		<div className={styles.container}>
 			<Head>
-				<title>Create Next App</title>
+				<title>Viðburðarþjónustan</title>
 				<meta
 					name="description"
 					content="Viðburðir frá viðburðarþjónustu"
 				/>
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-
+      <Header />
 			<main className={styles.main}>
 				<h1 className={styles.title}>
 					Viðburðir frá{' '}
@@ -26,37 +25,20 @@ const Home = (props: { events: IEventArray }) => {
 				</h1>
 
 				<p className={styles.description}>
-					Síða aðgengileg í
-					<code className={styles.code}>pages/index.tsx</code>
+					Verkefni 5 í 
+					<code className={styles.code}>HBV201G - Vefforritun 2</code>
 				</p>
 
         <div className={styles.grid}>
 					{props.events.items.map((event) => (
-            <a href={"./events/" + event.slug} className={styles.card}>
+            <a href={"./events/" + event.id} className={styles.card}>
               <h2>{event.name}</h2>
               <p>{event.description}</p>
             </a>
           ))}
         </div>
 			</main>
-
-			<footer className={styles.footer}>
-				<a
-					href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					Powered by{' '}
-					<span className={styles.logo}>
-						<Image
-							src="/vercel.svg"
-							alt="Vercel Logo"
-							width={72}
-							height={16}
-						/>
-					</span>
-				</a>
-			</footer>
+      <Footer />
 		</div>
 	);
 };

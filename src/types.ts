@@ -17,7 +17,7 @@ export interface IComment {
     id: number;
     username: string;
     name: string;
-    comment?: string;
+    comment: string;
 }
 
 export interface IEventSingle {
@@ -28,5 +28,5 @@ export interface IEventSingle {
     creatorId?: number;
     created: string;
     updated: string;
-    registrations?: Array<IComment>
+    registrations: Array<IComment>
 }
