@@ -14,7 +14,7 @@ const Login = () => {
         setLoggedIn(loggedData ? JSON.parse(loggedData) : false);
 	});
 
-	const loginUser = async (event: FormEvent) => {
+	const loginUser = async (event: any) => {
 		event.preventDefault(); // don't redirect the page
 		// ! laga þetta, allskonar ekki í lagi
 		console.log('event --> ', event.target)
