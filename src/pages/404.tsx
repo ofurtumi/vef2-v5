@@ -1,21 +1,21 @@
-export default function Custom404() {
-	const divstyle = {
-		width: '100%',
-    height: "95vh",
-    display: 'flex',
-    "justify-content": "center",
-    "align-items": "center",
-		margin: '0',
-    padding: '0'
-	};
+import Link from 'next/link';
+import Footer from './components/footer';
+import Header from './components/header';
+import style from '../styles/FourOFour.module.css';
 
-  const h1style = {
-    font: "bold 5em arial"
-  }
+export default function Custom404() {
+	
 
 	return (
-		<div style={divstyle}>
-			<h1 style={h1style}>404 - Engin síða hérna</h1>
-		</div>
+		<>
+			<Header />
+			<div className={style.divStyle}>
+				<h1 className={style.h1Style}>404 - Engin síða hérna</h1>
+				<Link href="/">
+					<h2 className={style.h2Style}>Aftur til baka</h2>
+				</Link>
+			</div>
+			<Footer />
+		</>
 	);
 }

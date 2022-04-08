@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Link from 'next/link';
 import styles from '../styles/Home.module.css';
 import { IEventArray, IEventOverview } from '../types';
 import Footer from './components/footer';
@@ -31,14 +32,12 @@ const Home = (props: { events: IEventArray }) => {
 
 				<div className={styles.grid}>
 					{props.events.items.map((event) => (
-						<a
-							key={event.id}
-							href={'./events/' + event.id}
-							className={styles.card}
-						>
-							<h2>{event.name}</h2>
-							<p>{event.description}</p>
-						</a>
+						<Link key={event.id} href={'/events/' + event.id}>
+							<a className={styles.card}>
+								<h2>{event.name}</h2>
+								<p>{event.description}</p>
+							</a>
+						</Link>
 					))}
 				</div>
 			</main>

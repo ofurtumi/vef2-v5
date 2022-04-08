@@ -5,12 +5,21 @@ function Logout() {
     const router = useRouter()
 
 	useEffect(() => {
-		localStorage.setItem('isLoggedIn', 'false');
+		localStorage.setItem('user', '');
         router.push('/');
 	});
 
+    const logoutStyle = {
+        height: "95vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+    }
+
     return (
-        <h1>Skrá þig út!</h1>
+        <div style={logoutStyle}>
+            <h1 style={{font: "bold 5em arial"}}>Skrái þig út!</h1>
+        </div>
     )
 }
 

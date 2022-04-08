@@ -2,32 +2,27 @@ import Head from 'next/head';
 import Footer from './components/footer';
 import Header from './components/header';
 import styles from '../styles/Home.module.css';
-import formStyle from '../styles/Form.module.css';
+import formStyles from '../styles/Form.module.css';
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
-const Login = () => {
-	const [loggedIn, setLoggedIn] = useState(false);
-	const router = useRouter();
+const Register = () => {
+	const [registration, setRegistration] = useState(false);
 
-	useEffect(() => {
-		if (!localStorage.getItem('user')) {
-			localStorage.setItem('user', '');
-		}
-	});
-
-	const loginUser = async (event: any) => {
+	const registerUser = async (event: any) => {
 		event.preventDefault(); // don't redirect the page
 		// ! laga þetta, allskonar ekki í lagi
 		console.log('event --> ', event.target);
 		const data = {
+			name: event.target.name.value,
 			username: event.target.username.value,
 			password: event.target.password.value,
 		};
 		const JSONdata = JSON.stringify(data);
 		// console.log('JSONdata --> ', JSONdata)
 		const endpoint =
-			'https://vef2-20222-v3-synilausn.herokuapp.com/users/login';
+			'https://vef2-20222-v3-synilausn.herokuapp.com/users/register';
 		const options = {
 			method: 'POST',
 			headers: {
@@ -36,19 +31,17 @@ const Login = () => {
 			body: JSONdata,
 		};
 		const response = await fetch(endpoint, options);
+		console.log('response --> ', response)
 		if (response.ok) {
 			const userData = await response.json();
-			window.localStorage.setItem('isLoggedIn', 'true');
-			window.localStorage.setItem('user', JSON.stringify(userData));
-			setLoggedIn(true);
-			router.push('/');
+			setRegistration(true);
 		}
 	};
 
 	return (
 		<div className={styles.container}>
 			<Head>
-				<title>{'Innskráning'}</title>
+				<title>{'Ný skráning'}</title>
 				<meta
 					name="description"
 					content="Viðburður sóttur í viðburðarþjónustuna"
@@ -57,27 +50,14 @@ const Login = () => {
 			</Head>
 			<Header />
 			<main className={styles.main}>
-				<form
-					className={formStyle.forms}
-					method="post"
-					onSubmit={loginUser}
-				>
-					<input
-						placeholder="Notendanafn"
-						type="text"
-						name="username"
-						id="username"
-					/>
-					<input
-						placeholder="Lykilorð"
-						type="password"
-						name="password"
-						id="password"
-					/>
-					<button value="submit">Skrá inn</button>
+				<form autoComplete="off" className={formStyles.forms} method="post" onSubmit={registerUser}>
+					<input placeholder='Fullt Nafn' type="text" name="name" id="name" />
+					<input placeholder='Notendanafn' type="text" name="username" id="username" />
+					<input placeholder='Lykilorð' type="password" name="password" id="password" />
+					<button value="submit">Skrá Notanda</button>
 				</form>
 				<p id="logged">
-					{loggedIn ? 'skráð/ur inn' : 'ekki innskráð/ur'}
+					{registration ? <Link href='/login'><a>Nýskráning tókst vinsamlegast skráðu þig inn</a></Link> : 'ekki innskráð/ur'}
 				</p>
 			</main>
 			<Footer />
@@ -85,4 +65,4 @@ const Login = () => {
 	);
 };
 
-export default Login;
+export default Register;
